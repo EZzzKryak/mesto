@@ -1,0 +1,36 @@
+.profile {
+  padding-top: 40px;
+  margin: 0 auto;
+  max-width: calc(100% - 400px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1279px) {
+  .profile {
+      max-width: calc(100% - 280px);
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .profile {
+      max-width: calc(100% - 180px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    max-width: calc(100% - 126px);
+    flex-direction: column;
+    gap: 25px;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .profile {
+      max-width: calc(100% - 38px);
+      flex-direction: column;
+      gap: 33px;
+  }
+}

@@ -1,0 +1,5 @@
+.places__info {
+  display: flex;
+  justify-content: space-between;
+  margin: 28px 20px;
+}

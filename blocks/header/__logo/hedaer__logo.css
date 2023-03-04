@@ -1,0 +1,29 @@
+.header__logo {
+    max-width: 142px;
+}
+
+@media screen and (max-width: 1279px) {
+  .header__logo {
+      margin-left: 70px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .header__logo {
+      margin-left: 65px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header__logo {
+      max-width: 124px;
+      margin-left: 50px;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .header__logo {
+      max-width: 104px;
+      margin-left: 27px;
+  }
+}

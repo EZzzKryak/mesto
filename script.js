@@ -5,9 +5,13 @@ const closePopupButtonElement = popupElement.querySelector('.popup__close');
 const formElement = document.querySelector('.popup__form');
 const nameInput = formElement.querySelector('.popup__name');
 const jobInput = formElement.querySelector('.popup__job');
+const profileNameElement = document.querySelector('.profile__name');
+const profileJobElement = document.querySelector('.profile__job');
 
 // Функция закрытия попапа
 function closePopup () {
+    nameInput.value = document.querySelector('.profile__name').textContent;
+    syncProfileWithInputs();
     popupElement.classList.remove('popup_opened');
 }
 
@@ -16,6 +20,7 @@ function closePopupByClickOnOverlay (event) {
     if (event.target !== event.currentTarget) {
         return;
     }
+    syncProfileWithInputs();
     closePopup();
 }
 
@@ -25,14 +30,19 @@ function handleFormSubmit (evt) {
     const name = nameInput.value;
     const job = jobInput.value;
 
-    const profileNameElement = document.querySelector('.profile__name');
-    const profileJobElement = document.querySelector('.profile__job');
-
     profileNameElement.textContent = name;
     profileJobElement.textContent = job;
 
     closePopup();
 }
+
+// Функция синхронизации данных профиля с полями ввода формы
+function syncProfileWithInputs () {
+  nameInput.value = profileNameElement.textContent;
+  jobInput.value = profileJobElement.textContent;
+}
+
+syncProfileWithInputs();
 
 // Событие открытия попапа
 editProfileButtonElement.addEventListener('click', () => {
