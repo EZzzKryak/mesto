@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./vendor/normalize.css">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./vendor/fonts/fonts.css">
+    <title>Mesto</title>
+  </head>
+  <body class="container container_background_color">
+    <div class="page">
+
+      <header class="header">
+        <img src="./images/header__logo.svg" alt="Место" class="header__logo">
+      </header>
+
+      <main class="main-content">
+        <section class="profile">
+          <div class="profile__container">
+            <img src="./images/profile__avatar.jpg" alt="Фото профиля" class="profile__avatar">
+            <div class="profile__info">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button class="profile__edit-btn"></button>
+              <p class="profile__job">Исследователь океана</p>
+            </div>
+          </div>
+          <button class="profile__add-btn"></button>
+        </section>
+        <section class="places">
+          <div class="places__item">
+            <img src="./images/place-1.jpg" alt="Карачаевск" class="places__img">
+            <div class="places__info">
+              <h2 class="places__name">Карачаевск</h2>
+              <button class="places__like"></button>
+            </div>
+          </div>
+          <div class="places__item">
+            <img src="./images/place-2.png" alt="Эльбрус" class="places__img">
+            <div class="places__info">
+              <h2 class="places__name">Гора Эльбрус</h2>
+              <button class="places__like"></button>
+            </div>
+          </div>
+          <div class="places__item">
+            <img src="./images/place-3.png" alt="Домбай" class="places__img">
+            <div class="places__info">
+              <h2 class="places__name">Домбай</h2>
+              <button class="places__like"></button>
+            </div>
+          </div>
+          <div class="places__item">
+            <img src="./images/place-4.png" alt="Эльбрус" class="places__img">
+            <div class="places__info">
+              <h2 class="places__name">Гора Эльбрус</h2>
+              <button class="places__like"></button>
+            </div>
+          </div>
+          <div class="places__item">
+            <img src="./images/place-5.png" alt="Домбай" class="places__img">
+            <div class="places__info">
+              <h2 class="places__name">Домбай</h2>
+              <button class="places__like"></button>
+            </div>
+          </div>
+          <div class="places__item">
+            <img src="./images/place-6.png" alt="Карачаево-Черкесия" class="places__img">
+            <div class="places__info">
+              <h2 class="places__name">Карачаево-Черкесия</h2>
+              <button class="places__like"></button>
+            </div>
+          </div>
+        </section>
+        <section class="popup">
+          <div class="popup__container">
+            <button class="popup__close"></button>
+            <form action="" class="popup__form">
+              <p class="popup__title">Редактировать профиль</p>
+              <div class="popup__input_name">
+                <input placeholder="Введите имя" type="text" class="popup__name">
+              </div>
+              <div class="popup__input_job">
+                <input placeholder="Введите вид деятельности" type="text" class="popup__job">
+              </div>
+              <button class="popup__submit">Сохранить</button>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p class="footer__copyright">© 2020 Mesto Russia</p>
+      </footer>
+
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
