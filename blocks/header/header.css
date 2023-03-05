@@ -3,32 +3,32 @@
   max-width: calc(100% - 400px);
   margin: 0 auto;
   min-height: 74px;
-  border-bottom: 1px solid rgba(84, 84, 84, .7);
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 @media screen and (max-width: 1279px) {
   .header {
-      max-width: calc(100% - 140px);
+    max-width: calc(100% - 140px);
   }
 }
 
 @media screen and (max-width: 1023px) {
   .header {
-      max-width: calc(100% - 50px);
-      padding-top: 38px;
-      min-height: 64px;
+    max-width: calc(100% - 50px);
+    padding-top: 38px;
+    min-height: 64px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .header {
-      max-width: 100%;
+    max-width: 100%;
   }
 }
 
 @media screen and (max-width: 424px) {
   .header {
-      padding-top: 28px;
-      min-height: 56px;
+    padding-top: 28px;
+    min-height: 56px;
   }
 }

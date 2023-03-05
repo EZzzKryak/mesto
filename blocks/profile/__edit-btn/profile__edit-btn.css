@@ -1,15 +1,13 @@
 .profile__edit-btn {
-  position: absolute;
-  top: 15px;
-  right: -42px;
   width: 24px;
   height: 24px;
   border: 1px solid #FFFFFF;
-  margin: 0;
+  margin: 5px 0 0;
   padding: 0;
   background: url(../../../images/profile__edit-btn.svg) no-repeat center / 10px;
   cursor: pointer;
   transition: opacity .1s;
+  grid-area: profile__edit-btn;
 }
 
 .profile__edit-btn:hover {
@@ -18,10 +16,8 @@
 
 @media screen and (max-width: 1023px) {
   .profile__edit-btn {
-      width: 21px;
-      height: 21px;
-      top: 12px;
-      right: -36px;
+    width: 21px;
+    height: 21px;
   }
 }
 
@@ -29,13 +25,11 @@
   .profile__edit-btn {
     width: 18px;
     height: 18px;
-    top: 12px;
-    right: -26px;
   }
 }
 
 @media screen and (max-width: 424px) {
   .profile__edit-btn {
-      top: 8px;
+    margin: 0;
   }
 }

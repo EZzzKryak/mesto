@@ -1,24 +1,27 @@
 .profile__name {
+  max-width: 294px;
   margin: 0;
   padding: 0;
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
-  letter-spacing: .5px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  grid-area: profile__name;
 }
 
 @media screen and (max-width: 1023px) {
   .profile__name {
-      font-size: 34px;
-      line-height: 40px;
+    max-width: 239px;
+    font-size: 34px;
+    line-height: 40px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .profile__name {
+    max-width: 212px;
     font-size: 30px;
     line-height: 36px;
   }
@@ -26,8 +29,8 @@
 
 @media screen and (max-width: 424px) {
   .profile__name {
+    max-width: 191px;
     font-size: 27px;
     line-height: 33px;
-    letter-spacing: .2px;
   }
 }

@@ -6,15 +6,14 @@
 
 @media screen and (max-width: 767px) {
   .profile__container {
-      width: 70%;
-      justify-content: space-around;
-      gap: 15px;
+    gap: 15px;
   }
 }
 
 @media screen and (max-width: 424px) {
   .profile__container {
-      flex-direction: column;
-      gap: 27px;
+    flex-direction: column;
+    gap: 27px;
+    width: 100%;
   }
 }

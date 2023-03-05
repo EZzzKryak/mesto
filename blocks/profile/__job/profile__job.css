@@ -1,5 +1,6 @@
 .profile__job {
-  margin: 10px 0 0;
+  max-width: 294px;
+  margin: 0;
   padding: 0;
   font-weight: 400;
   font-size: 18px;
@@ -7,26 +8,28 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  grid-area: profile__job;
 }
 
 @media screen and (max-width: 1023px) {
   .profile__job {
-      font-size: 16px;
-      line-height: 19px;
+    max-width: 239px;
+    font-size: 16px;
+    line-height: 19px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .profile__job {
-      margin-top: 7px;
-      font-size: 17px;
-      line-height: 20px;
+    max-width: 212px;
+    font-size: 17px;
+    line-height: 20px;
   }
 }
 
 @media screen and (max-width: 424px) {
   .profile__job {
-    margin-top: 7px;
+    max-width: 191px;
     font-size: 14px;
     line-height: 17px;
   }
