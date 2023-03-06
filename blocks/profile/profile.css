@@ -21,7 +21,7 @@
 
 @media screen and (max-width: 767px) {
   .profile {
-    max-width: calc(100% - 126px);
+    max-width: 100%;
     flex-direction: column;
     gap: 33px;
   }
@@ -30,6 +30,5 @@
 @media screen and (max-width: 424px) {
   .profile {
     max-width: calc(100% - 38px);
-    flex-direction: column;
   }
 }
