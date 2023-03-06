@@ -1,6 +1,6 @@
 .profile__info {
   display: grid;
-  grid-template-columns: max-content 24px;
+  grid-template-columns: max-content 1fr;
   grid-template-areas:
   "profile__name profile__edit-btn"
   "profile__job .";
@@ -10,14 +10,13 @@
 
 @media screen and (max-width: 767px) {
   .profile__info {
-    grid-template-columns: max-content 24px;
     column-gap: 10px;
   }
 }
 
 @media screen and (max-width: 424px) {
   .profile__info {
-    grid-template-columns: 18px max-content 18px;
+    grid-template-columns: 1fr max-content 1fr;
     grid-template-areas:
     ". profile__name profile__edit-btn"
     ". profile__job .";
