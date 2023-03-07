@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
   </head>
-  <body class="container container_background_color">
+  <body class="container">
     <div class="page">
 
       <header class="header">
@@ -19,74 +19,74 @@
             <img src="./images/profile__avatar.jpg" alt="Фото профиля" class="profile__avatar">
             <div class="profile__info">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button class="profile__edit-btn"></button>
+              <button type="button" class="profile__edit-btn" aria-label="Редактировать профиль"></button>
               <p class="profile__job">Исследователь океана</p>
             </div>
           </div>
-          <button class="profile__add-btn"></button>
+          <button type="button" class="profile__add-btn" aria-label="Добавить картинку"></button>
         </section>
 
         <section class="places">
-          <article class="places__item">
-            <img src="./images/place-1.jpg" alt="Карачаевск" class="places__img">
-            <div class="places__info">
-              <h2 class="places__name">Карачаевск</h2>
-              <button class="places__like"></button>
+          <article class="place">
+            <img src="./images/place-1.jpg" alt="Карачаевск" class="place__img">
+            <div class="place__info">
+              <h2 class="place__name">Карачаевск</h2>
+              <button type="button" class="place__like" aria-label="Нравится"></button>
             </div>
           </article>
-          <article class="places__item">
-            <img src="./images/place-2.png" alt="Эльбрус" class="places__img">
-            <div class="places__info">
-              <h2 class="places__name">Гора Эльбрус</h2>
-              <button class="places__like"></button>
+          <article class="place">
+            <img src="./images/place-2.jpg" alt="Эльбрус" class="place__img">
+            <div class="place__info">
+              <h2 class="place__name">Гора Эльбрус</h2>
+              <button type="button" class="place__like" aria-label="Нравится"></button>
             </div>
           </article>
-          <article class="places__item">
-            <img src="./images/place-3.png" alt="Домбай" class="places__img">
-            <div class="places__info">
-              <h2 class="places__name">Домбай</h2>
-              <button class="places__like"></button>
+          <article class="place">
+            <img src="./images/place-3.jpg" alt="Домбай" class="place__img">
+            <div class="place__info">
+              <h2 class="place__name">Домбай</h2>
+              <button type="button" class="place__like" aria-label="Нравится"></button>
             </div>
           </article>
-          <article class="places__item">
-            <img src="./images/place-4.png" alt="Эльбрус" class="places__img">
-            <div class="places__info">
-              <h2 class="places__name">Гора Эльбрус</h2>
-              <button class="places__like"></button>
+          <article class="place">
+            <img src="./images/place-4.jpg" alt="Эльбрус" class="place__img">
+            <div class="place__info">
+              <h2 class="place__name">Гора Эльбрус</h2>
+              <button type="button" class="place__like" aria-label="Нравится"></button>
             </div>
           </article>
-          <article class="places__item">
-            <img src="./images/place-5.png" alt="Домбай" class="places__img">
-            <div class="places__info">
-              <h2 class="places__name">Домбай</h2>
-              <button class="places__like"></button>
+          <article class="place">
+            <img src="./images/place-5.jpg" alt="Домбай" class="place__img">
+            <div class="place__info">
+              <h2 class="place__name">Домбай</h2>
+              <button type="button" class="place__like" aria-label="Нравится"></button>
             </div>
           </article>
-          <article class="places__item">
-            <img src="./images/place-6.png" alt="Карачаево-Черкесия" class="places__img">
-            <div class="places__info">
-              <h2 class="places__name">Карачаево-Черкесия</h2>
-              <button class="places__like"></button>
+          <article class="place">
+            <img src="./images/place-6.jpg" alt="Карачаево-Черкесия" class="place__img">
+            <div class="place__info">
+              <h2 class="place__name">Карачаево-Черкесия</h2>
+              <button type="button" class="place__like" aria-label="Нравится"></button>
             </div>
           </article>
-        </section>
-
-        <section class="popup">
-          <div class="popup__container">
-            <button class="popup__close"></button>
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__form">
-              <input value="" type="text" class="popup__input popup__input_name">
-              <input value="" type="text" class="popup__input popup__input_job">
-              <button class="popup__submit">Сохранить</button>
-            </form>
-          </div>
         </section>
       </main>
 
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
+
+      <div class="popup">
+        <div class="popup__container">
+          <button type="button" class="popup__close" aria-label="Закрыть"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form class="popup__form" name="editForm">
+            <input value="" type="text" name="profileName" placeholder="Введите имя" class="popup__input popup__input_type_name" required>
+            <input value="" type="text" name="profileJob" placeholder="Введите профессию" class="popup__input popup__input_type_job" required>
+            <button type="submit" class="popup__submit" aria-label="Сохранить данные">Сохранить</button>
+          </form>
+        </div>
+      </div>
 
     </div>
     <script src="./scripts/script.js"></script>

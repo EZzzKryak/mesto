@@ -1,38 +1,38 @@
 // Доступ к необходимым элементам страницы
-const editProfileButtonElement = document.querySelector('.profile__edit-btn');
+const profileEditingButtonElement = document.querySelector('.profile__edit-btn');
 const popupElement = document.querySelector('.popup');
 const closePopupButtonElement = popupElement.querySelector('.popup__close');
 const formElement = document.querySelector('.popup__form');
-const nameInput = formElement.querySelector('.popup__input_name');
-const jobInput = formElement.querySelector('.popup__input_job');
+const nameInput = formElement.querySelector('.popup__input_type_name');
+const jobInput = formElement.querySelector('.popup__input_type_job');
 const profileNameElement = document.querySelector('.profile__name');
 const profileJobElement = document.querySelector('.profile__job');
 
+// Функция открытия попапа
+function openPopup () {
+  popupElement.classList.add('popup_opened');
+  syncProfileWithInputs();
+}
+
 // Функция закрытия попапа
 function closePopup () {
-    nameInput.value = document.querySelector('.profile__name').textContent;
-    syncProfileWithInputs();
     popupElement.classList.remove('popup_opened');
 }
 
 // Функция закрытия попапа на оверлей
-function closePopupByClickOnOverlay (event) {
-    if (event.target !== event.currentTarget) {
-        return;
-    }
-    syncProfileWithInputs();
-    closePopup();
-}
+// function closePopupByClickOnOverlay (event) {
+//     if (event.target !== event.currentTarget) {
+//         return;
+//     }
+//     syncProfileWithInputs();
+//     closePopup();
+// }
 
 // Функция сохранения данных профиля
 function handleFormSubmit (evt) {
     evt.preventDefault();
-    const name = nameInput.value;
-    const job = jobInput.value;
-
-    profileNameElement.textContent = name;
-    profileJobElement.textContent = job;
-
+    profileNameElement.textContent = nameInput.value;
+    profileJobElement.textContent = jobInput.value;
     closePopup();
 }
 
@@ -42,13 +42,11 @@ function syncProfileWithInputs () {
   jobInput.value = profileJobElement.textContent;
 }
 
-syncProfileWithInputs();
-
 // Событие открытия попапа
-editProfileButtonElement.addEventListener('click', () => {
-    popupElement.classList.add('popup_opened');
-});
+profileEditingButtonElement.addEventListener('click', openPopup);
 
-closePopupButtonElement.addEventListener('click', closePopup); // Событие закрытия попапа на крестик
-popupElement.addEventListener('click', closePopupByClickOnOverlay); // Событие закрытия попапа на оверлей
-formElement.addEventListener('submit', handleFormSubmit);  // Событие сохранения данных профиля
+// Событие закрытия попапа на крестик
+closePopupButtonElement.addEventListener('click', closePopup);
+
+// Событие сохранения данных профиля
+formElement.addEventListener('submit', handleFormSubmit);
