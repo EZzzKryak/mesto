@@ -27,68 +27,57 @@
         </section>
 
         <section class="places">
-          <article class="place">
-            <img src="./images/place-1.jpg" alt="Карачаевск" class="place__img">
-            <div class="place__info">
-              <h2 class="place__name">Карачаевск</h2>
-              <button type="button" class="place__like" aria-label="Нравится"></button>
-            </div>
-          </article>
-          <article class="place">
-            <img src="./images/place-2.jpg" alt="Эльбрус" class="place__img">
-            <div class="place__info">
-              <h2 class="place__name">Гора Эльбрус</h2>
-              <button type="button" class="place__like" aria-label="Нравится"></button>
-            </div>
-          </article>
-          <article class="place">
-            <img src="./images/place-3.jpg" alt="Домбай" class="place__img">
-            <div class="place__info">
-              <h2 class="place__name">Домбай</h2>
-              <button type="button" class="place__like" aria-label="Нравится"></button>
-            </div>
-          </article>
-          <article class="place">
-            <img src="./images/place-4.jpg" alt="Эльбрус" class="place__img">
-            <div class="place__info">
-              <h2 class="place__name">Гора Эльбрус</h2>
-              <button type="button" class="place__like" aria-label="Нравится"></button>
-            </div>
-          </article>
-          <article class="place">
-            <img src="./images/place-5.jpg" alt="Домбай" class="place__img">
-            <div class="place__info">
-              <h2 class="place__name">Домбай</h2>
-              <button type="button" class="place__like" aria-label="Нравится"></button>
-            </div>
-          </article>
-          <article class="place">
-            <img src="./images/place-6.jpg" alt="Карачаево-Черкесия" class="place__img">
-            <div class="place__info">
-              <h2 class="place__name">Карачаево-Черкесия</h2>
-              <button type="button" class="place__like" aria-label="Нравится"></button>
-            </div>
-          </article>
         </section>
       </main>
 
       <footer class="footer">
-        <p class="footer__copyright">© 2020 Mesto Russia</p>
+        <p class="footer__copyright">© 2023 Mesto Russia</p>
       </footer>
 
-      <div class="popup">
-        <div class="popup__container">
-          <button type="button" class="popup__close" aria-label="Закрыть"></button>
+      <div class="popup popup_type_profile">
+        <div class="popup__container popup__container_type_form">
+          <button type="button" class="popup__close popup__close_type_profile" aria-label="Закрыть"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form" name="editForm">
+          <form class="popup__form" name="editProfile">
             <input value="" type="text" name="profileName" placeholder="Введите имя" class="popup__input popup__input_type_name" required>
             <input value="" type="text" name="profileJob" placeholder="Введите профессию" class="popup__input popup__input_type_job" required>
-            <button type="submit" class="popup__submit" aria-label="Сохранить данные">Сохранить</button>
+            <button type="submit" class="popup__submit popup__submit_type_profile" aria-label="Сохранить данные">Сохранить</button>
           </form>
         </div>
       </div>
 
+      <div class="popup popup_type_place">
+        <div class="popup__container popup__container_type_form">
+          <button type="button" class="popup__close popup__close_type_place" aria-label="Закрыть"></button>
+          <h2 class="popup__title">Новое место</h2>
+          <form class="popup__form" name="addPlace">
+            <input value="" type="text" name="placeName" placeholder="Название" class="popup__input popup__input_type_pic-name" required>
+            <input value="" type="text" name="placeLink" placeholder="Ссылка на картинку" class="popup__input popup__input_type_pic-link" required>
+            <button type="submit" class="popup__submit popup__submit_type_place" aria-label="Сохранить данные">Создать</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_type_img">
+        <div class="popup__container popup__container_type_img">
+          <button type="button" class="popup__close popup__close_type_img" aria-label="Закрыть"></button>
+          <img class="popup__img" src="" alt="">
+        </div>
+      </div>
+
+      <template id="place">
+        <article class="place">
+          <img src="./images/place-6.jpg" alt="" class="place__img">
+          <div class="place__info">
+            <h2 class="place__name"></h2>
+            <button type="button" class="place__like" aria-label="Нравится"></button>
+            <button type="button" class="place__remove" aria-label="Удалить"></button>
+          </div>
+        </article>
+      </template>
+
     </div>
+    <script src="./scripts/constants.js"></script>
     <script src="./scripts/script.js"></script>
   </body>
 </html>

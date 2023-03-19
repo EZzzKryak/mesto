@@ -6,7 +6,7 @@
   padding: 0;
   background: url(../../../images/profile__edit-btn.svg) no-repeat center / 10px;
   cursor: pointer;
-  transition: opacity .1s;
+  transition: opacity .2s;
   grid-area: profile__edit-btn;
 }
 

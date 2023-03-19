@@ -1,6 +1,13 @@
 .place__img {
   display: block;
   width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+}
+
+.place__img:hover {
+  cursor: pointer;
 }
