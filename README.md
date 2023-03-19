@@ -1,4 +1,4 @@
-![alt tag](https://i.postimg.cc/2y1mLjYT/image.jpg)
+![alt teg](https://imageup.ru/img15/4254697/bez-imeni.jpg)
 [:point_right: _Ссылка на проект_ :point_left:](https://ezzzkryak.github.io/mesto/)
 
 # Проектная работа 4, 5* - Mesto
