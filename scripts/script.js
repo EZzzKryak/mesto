@@ -43,15 +43,17 @@ function closePopup(popup) {
 // Сохранение данных профиля
 function handleProfileFormSubmit (evt) {
   evt.preventDefault();
+  const popup = evt.target.closest('.popup');
   profileNameElement.textContent = profilePopupNameInput.value;
   profileJobElement.textContent = profilePopupJobInput.value;
-  closePopup(evt);
+  closePopup(popup);
 }
 // Сохранение данных карточки
 function handlePlaceFormSubmit (evt) {
   evt.preventDefault();
+  const popup = evt.target.closest('.popup');
   renderPlace({name: placePopupNameInput.value, link: placePopupLinkInput.value})
-  closePopup(evt);
+  closePopup(popup);
 }
 // Создание карточки
 function createPlace(data) {
