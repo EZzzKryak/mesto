@@ -7,14 +7,16 @@ const imgPopupElement = document.querySelector('.popup_type_img');
 const profileEditingButtonElement = document.querySelector('.profile__edit-btn');
 const placeAdditingButtonElement = document.querySelector('.profile__add-btn');
 // Получаем кнопки закрытия попапов
-const closeProfilePopupButtonElement = profilePopupElement.querySelector('.popup__close_type_profile');
-const closePlacePopupButtonElement = placePopupElement.querySelector('.popup__close_type_place');
-const closeImgPopupButtonElement = imgPopupElement.querySelector('.popup__close_type_img');
+const closeButtonElements = document.querySelectorAll('.popup__close');
 // Получаем данные профиля на странице и инпуты формы профиля (для связи)
 const profilePopupNameInput = profilePopupElement.querySelector('.popup__input_type_name');
 const profilePopupJobInput = profilePopupElement.querySelector('.popup__input_type_job');
 const profileNameElement = document.querySelector('.profile__name');
 const profileJobElement = document.querySelector('.profile__job');
+// Получаем форму карточки места
+const formInPlacePopupElement = placePopupElement.querySelector('.popup__form');
+// Получаем попап-картинку
+const bigImgPopupElement = imgPopupElement.querySelector('.popup__img')
 // Получаем инпуты формы для добавления картинок
 const placePopupNameInput = placePopupElement.querySelector('.popup__input_type_pic-name');
 const placePopupLinkInput = placePopupElement.querySelector('.popup__input_type_pic-link');
@@ -35,9 +37,8 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 // Закрытие попапов
-function closePopup(evt) {
-  const openedPopup = evt.target.closest('.popup');
-  openedPopup.classList.remove('popup_opened');
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
 }
 // Сохранение данных профиля
 function handleProfileFormSubmit (evt) {
@@ -72,8 +73,9 @@ function createPlace(data) {
   // Событие открытия попапа-картинки
   placeElement.querySelector('.place__img').addEventListener('click', (evt) => {
     // Наполняем атрибуты попапа из атрибутов картинки, на которую нажали
-    imgPopupElement.querySelector('.popup__img').src = evt.target.src;
-    imgPopupElement.querySelector('.popup__img').alt = evt.target.alt;
+    bigImgPopupElement.src = evt.target.src;
+    bigImgPopupElement.alt = evt.target.alt;
+    imgPopupElement.querySelector('.popup__img-name').textContent = data.name;
     openPopup(imgPopupElement);
   });
   // Возвращаем получившуюся карточку (шаблон)
@@ -94,15 +96,18 @@ profileEditingButtonElement.addEventListener('click', () => {
   openPopup(profilePopupElement);
 });
 placeAdditingButtonElement.addEventListener('click', () => {
-  placePopupNameInput.value = '';
-  placePopupLinkInput.value = '';
+  formInPlacePopupElement.reset();
   openPopup(placePopupElement);
 });
-// Закрытие попапов
-closeProfilePopupButtonElement.addEventListener('click', closePopup);
-closePlacePopupButtonElement.addEventListener('click', closePopup);
-closeImgPopupButtonElement.addEventListener('click', closePopup);
+// Закрытие попапов при помощи цикла с обработчиком событий
+closeButtonElements.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
 // Сохранение данных профиля
 profilePopupElement.addEventListener('submit', handleProfileFormSubmit);
 // Сохранение данных карточки
 placePopupElement.addEventListener('submit', handlePlaceFormSubmit);
+
+
+
