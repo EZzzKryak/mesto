@@ -17,7 +17,7 @@ const profileJobElement = document.querySelector('.profile__job');
 const formInPlacePopupElement = placePopupElement.querySelector('.popup__form');
 // Получаем попап-картинку и её название (подпись снизу)
 const bigImgPopupElement = imgPopupElement.querySelector('.popup__img')
-сonst bigImgNamePopupElement = imgPopupElement.querySelector('.popup__img-name');
+const bigImgNamePopupElement = imgPopupElement.querySelector('.popup__img-name');
 // Получаем инпуты формы для добавления картинок
 const placePopupNameInput = placePopupElement.querySelector('.popup__input_type_pic-name');
 const placePopupLinkInput = placePopupElement.querySelector('.popup__input_type_pic-link');
