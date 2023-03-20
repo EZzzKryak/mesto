@@ -15,8 +15,9 @@ const profileNameElement = document.querySelector('.profile__name');
 const profileJobElement = document.querySelector('.profile__job');
 // Получаем форму карточки места
 const formInPlacePopupElement = placePopupElement.querySelector('.popup__form');
-// Получаем попап-картинку
+// Получаем попап-картинку и её название (подпись снизу)
 const bigImgPopupElement = imgPopupElement.querySelector('.popup__img')
+сonst bigImgNamePopupElement = imgPopupElement.querySelector('.popup__img-name');
 // Получаем инпуты формы для добавления картинок
 const placePopupNameInput = placePopupElement.querySelector('.popup__input_type_pic-name');
 const placePopupLinkInput = placePopupElement.querySelector('.popup__input_type_pic-link');
@@ -77,7 +78,7 @@ function createPlace(data) {
     // Наполняем атрибуты попапа из атрибутов картинки, на которую нажали
     bigImgPopupElement.src = evt.target.src;
     bigImgPopupElement.alt = evt.target.alt;
-    imgPopupElement.querySelector('.popup__img-name').textContent = data.name;
+    bigImgNamePopupElement.textContent = data.name;
     openPopup(imgPopupElement);
   });
   // Возвращаем получившуюся карточку (шаблон)
