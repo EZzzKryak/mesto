@@ -1,5 +1,6 @@
 // Доступ к необходимым элементам на странице:
 // Получаем попапы на странице
+const popupElements = document.querySelectorAll('.popup');
 const profilePopupElement = document.querySelector('.popup_type_profile');
 const placePopupElement = document.querySelector('.popup_type_place');
 const imgPopupElement = document.querySelector('.popup_type_img');
@@ -33,13 +34,30 @@ initialCards.forEach(card => {
 
 
 //Функции:
-// Открытие попапов
+// Открытие попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEscape);
 }
-// Закрытие попапов
+// Закрытие попапа (универсальное)
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEscape);
+}
+// Закрытие попапа на клавишу 'Esc'
+function closePopupByEscape(evt) {
+  popupElements.forEach(popup => {
+    if (evt.key === 'Escape') {
+      closePopup(popup);
+    }
+  })
+}
+// Закрытие попапа на оверлей
+function closePopupByClickOnOverlay(evt) {
+  if (evt.target !== evt.currentTarget) {
+    return;
+  }
+  closePopup(evt.target);
 }
 // Сохранение данных профиля
 function handleProfileFormSubmit (evt) {
@@ -102,15 +120,18 @@ placeAdditingButtonElement.addEventListener('click', () => {
   formInPlacePopupElement.reset();
   openPopup(placePopupElement);
 });
-// Закрытие попапов при помощи цикла с обработчиком событий
+// Закрытие попапов на крестик
 closeButtonElements.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
+// Закрытие попапов на оверлей
+popupElements.forEach(popup => {
+  popup.addEventListener('mousedown', closePopupByClickOnOverlay);
+})
 // Сохранение данных профиля
 profilePopupElement.addEventListener('submit', handleProfileFormSubmit);
 // Сохранение данных карточки
 placePopupElement.addEventListener('submit', handlePlaceFormSubmit);
-
 
 
