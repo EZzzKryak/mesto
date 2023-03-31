@@ -3,91 +3,106 @@ const popupObjForValidation = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit',
   inactiveButtonClass: 'popup__submit_disabled',
-  inputErrorClass: 'popup__input-error_active', // Ошибка в спэне
+  inputErrorClass: 'popup__input-error_active', // Ошибка в спэне (текст встроенной валидации)
   errorClass: 'popup__input_type_error' // Маркер ошибки в инпуте (красный бордер)
 }
 
 
-// Функция валидации, принимающая объект с элементами попапа
+// Основная функция валидации, принимающая объект с элементами попапа
 function enableValidation(obj) {
-  // Найдём все формы с указанным классом в DOM, сделаем из них массив методом Array.from
+  // Создаю массив из коллекции форм в DOM для дальнейшего применения методов массива
   const formElements = Array.from(document.querySelectorAll(obj.formSelector));
-  // Переберём полученную коллекцию
+  // Перебираю полученную массив
   formElements.forEach((formItem) => {
-
-    // Отменим стандартное поведение браузера при отправке формы для каждоый формы
-    formItem.addEventListener('submit', evt => {
-      evt.preventDefault();
-    });
-    // Для каждой формы вызовем функцию setEventListeners, которая переберёт все инпуты внутри формы
+    formItem.addEventListener('submit', evt => evt.preventDefault());
+    // Вызываю функцию с перебором всех инпутов
     setEventListeners(formItem);
   });
 
-  // Функция установки обработчиков событий для всех инпутов форм на странице
+
+  // Функция перебора всех инпутов на странице и установки им обработчиков событий
   function setEventListeners(formItem) {
-    // Получаем доступ к кнопке
+    // Получаю доступ к кнопке сабмита формы
     const submitButtonElement = formItem.querySelector(obj.submitButtonSelector);
-    // Находим все поля внутри формы, сделаем из них массив методом Array.from
+    // Создаю массив из коллекции интупов внутри формы для дальнейшего применения методов массива
     const inputElements = Array.from(formItem.querySelectorAll(obj.inputSelector));
-    // Проверяем изначальное состояние кнопки при загрузке страницы
+    // Проверяю изначальное состояние кнопки при загрузке страницы
     AllowSubmit(inputElements, submitButtonElement);
-    // Обойдём все элементы полученной коллекции
+    // Всем интупам формы вешаю обработчик input
     inputElements.forEach((inputItem) => {
-      // Каждому полю добавим обработчик события input
       inputItem.addEventListener('input', () => {
-        // Внутри колбэка вызовем isValid, передав ей форму и проверяемый элемент
+        // Проверяю каждый инпут формы на валидность
         isValid(formItem, inputItem);
-        // Функция разрешения отправки формы, если все поля валидны
-        AllowSubmit(inputElements, submitButtonElement); //--------------------------------------------------------------- ДОРАБОТАТЬ!!!!
+        // Разрешаю отправку формы, если все поля валидны (принимает массив инпутов, а также кнопку сабмита)
+        AllowSubmit(inputElements, submitButtonElement);
       });
     });
   };
 
+
   // Функция проверки валидности поля формы
   function isValid(formItem, inputItem) {
     if (!inputItem.validity.valid) {
-      // showInputError теперь получает параметром форму, в которой находится проверяемое поле, и само это поле
+      // showError получает аргументом форму, в которой находится проверяемое поле, и само поле, а также сообщение об ошибке валидации
       showError(formItem, inputItem, inputItem.validationMessage);
     } else {
-      // hideInputError теперь получает параметром форму, в которой находится проверяемое поле, и само это поле
+      // hideError получает аргументом форму, в которой находится проверяемое поле, и само поле
       hideError(formItem, inputItem);
     }
   };
 
+
+  // Функция, показывающая ошибку валидации
   function showError(formItem, inputItem, errorMessage) {
-    // Находим элемент ошибки внутри самой функции
-    const errorElement = formItem.querySelector(`.${inputItem.id}-error`);  // Спэн с ошибкой
-    // Остальной код такой же
+    // Нахожу элемент ошибки (спэн)
+    const errorElement = formItem.querySelector(`.${inputItem.id}-error`);
+    // Вывожу ошибку (спэн и бордер инпута)
     inputItem.classList.add(obj.errorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(obj.inputErrorClass);
   };
 
+
+  // Функция, скрывающая ошибку валидации
   function hideError(formItem, inputItem) {
-    // Находим элемент ошибки
-    const errorElement = formItem.querySelector(`.${inputItem.id}-error`);  // Спэн с ошибкой
-    // Остальной код такой же
+    // Нахожу элемент ошибки (спэн)
+    const errorElement = formItem.querySelector(`.${inputItem.id}-error`);
+    // Скрываю/очищаю ошибку (спэн и бордер инпута)
     inputItem.classList.remove(obj.errorClass);
     errorElement.classList.remove(obj.inputErrorClass);
     errorElement.textContent = '';
   };
 
-  function AllowSubmit(inputItems, buttonItem) {  //--------------------------------------------------------------- ДОРАБОТАТЬ!!!!
+
+  // Функция, разрешающая отправку формы (как через кнопку, так и клавишей enter) при отсутствии невалидных инпутов
+  function AllowSubmit(inputItems, buttonItem) {
+    // Если есть хоть одно невалидное поле
     if (hasInvalidInput(inputItems)) {
+      // Запрещаю отправку формы при нажатии на кнопку
       buttonItem.classList.add(obj.inactiveButtonClass);
+      // А также при нажатии на клавишу enter, которая ориентируется на состояние кнопки. Если кнопка disabled, то отправка через enter также блокируется.
+      inputItems.forEach(inputItem => {
+        inputItem.addEventListener('keydown', evt => {
+          if(evt.key === 'Enter' && buttonItem.classList.contains(obj.inactiveButtonClass)) {
+            evt.preventDefault();
+          }
+        })
+      })
     } else {
+      // Разрешаю отправку формы нажатием на кнопку, а следовательно и клавишей enter (т.к. она по умолчанию обладает функцией отправки формы)
       buttonItem.classList.remove(obj.inactiveButtonClass);
     }
   };
 
+
+  // Функция, проверяющая наличие хоть одного инвалидного инпута. Нужна для связи между валидностью инпутов и возможностью отправки формы.
   function hasInvalidInput(inputItems) {
-    // проходим по этому массиву методом some
+    // Методом some() проверяю, есть ли невалидные поля. Если хоть одно такое поле найдётся, функция вернёт true.
     return inputItems.some((inputItem) => {
-      // Если поле не валидно, колбэк вернёт true. Обход массива прекратится и вся функция hasInvalidInput вернёт true
       return !inputItem.validity.valid;
     })
   };
 }
 
-// Вызов функции валидации
+// Вызываю функции валидации
 enableValidation(popupObjForValidation);

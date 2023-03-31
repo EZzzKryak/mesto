@@ -37,11 +37,13 @@ initialCards.forEach(card => {
 // Открытие попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  // Вешаю обработчик закрытия попапа на клавишу 'Escape'
   document.addEventListener('keydown', closePopupByEscape);
 }
-// Закрытие попапа (универсальное)
+// Закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  // Удаляю обработчик закрытия попапа на клавишу 'Escape'
   document.removeEventListener('keydown', closePopupByEscape);
 }
 // Закрытие попапа на клавишу 'Esc'
@@ -73,6 +75,18 @@ function handlePlaceFormSubmit (evt) {
   const popup = evt.target.closest('.popup');
   renderPlace({name: placePopupNameInput.value, link: placePopupLinkInput.value})
   closePopup(popup);
+}
+// Функция очистки ошибок валидации
+function resetValidationError(popup) {
+  const spanElements = popup.querySelectorAll('.popup__input-error');
+  const inputElements = popup.querySelectorAll('.popup__input');
+  spanElements.forEach(span => {
+    span.classList.remove('popup__input-error_active');
+    span.textContent = '';
+  })
+  inputElements.forEach(input => {
+    input.classList.remove('popup__input_type_error');
+  })
 }
 // Создание карточки
 function createPlace(data) {
@@ -115,10 +129,12 @@ profileEditingButtonElement.addEventListener('click', () => {
   profilePopupNameInput.value = profileNameElement.textContent;
   profilePopupJobInput.value = profileJobElement.textContent;
   openPopup(profilePopupElement);
+  resetValidationError(profilePopupElement);
 });
 placeAdditingButtonElement.addEventListener('click', () => {
   formInPlacePopupElement.reset();
   openPopup(placePopupElement);
+  resetValidationError(placePopupElement);
 });
 // Закрытие попапов на крестик
 closeButtonElements.forEach((button) => {
@@ -133,5 +149,3 @@ popupElements.forEach(popup => {
 profilePopupElement.addEventListener('submit', handleProfileFormSubmit);
 // Сохранение данных карточки
 placePopupElement.addEventListener('submit', handlePlaceFormSubmit);
-
-
