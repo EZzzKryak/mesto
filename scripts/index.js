@@ -1,5 +1,6 @@
 // Доступ к необходимым элементам на странице:
 // Получаем попапы на странице
+const popupElements = document.querySelectorAll('.popup');
 const profilePopupElement = document.querySelector('.popup_type_profile');
 const placePopupElement = document.querySelector('.popup_type_place');
 const imgPopupElement = document.querySelector('.popup_type_img');
@@ -33,14 +34,20 @@ initialCards.forEach(card => {
 
 
 //Функции:
-// Открытие попапов
+// Открытие попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 <<<<<<< HEAD:scripts/script.js
+<<<<<<< HEAD:scripts/script.js
+=======
+  // Вешаю обработчик закрытия попапа на клавишу 'Escape'
+  document.addEventListener('keydown', closePopupByEscape);
+>>>>>>> develop:scripts/index.js
 }
-// Закрытие попапов
+// Закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+<<<<<<< HEAD:scripts/script.js
 =======
   // Вешаю обработчик закрытия попапа на клавишу 'Escape'
   document.addEventListener('keydown', closePopupByEscape);
@@ -48,6 +55,8 @@ function closePopup(popup) {
 // Закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+=======
+>>>>>>> develop:scripts/index.js
   // Удаляю обработчик закрытия попапа на клавишу 'Escape'
   document.removeEventListener('keydown', closePopupByEscape);
 }
@@ -65,7 +74,10 @@ function closePopupByClickOnOverlay(evt) {
     return;
   }
   closePopup(evt.target);
+<<<<<<< HEAD:scripts/script.js
 >>>>>>> 1f7a4e1 (можно релизить):scripts/index.js
+=======
+>>>>>>> develop:scripts/index.js
 }
 // Сохранение данных профиля
 function handleProfileFormSubmit (evt) {
@@ -142,18 +154,25 @@ placeAdditingButtonElement.addEventListener('click', () => {
   openPopup(placePopupElement);
   resetValidationError(placePopupElement);
 });
-// Закрытие попапов при помощи цикла с обработчиком событий
+// Закрытие попапов на крестик
 closeButtonElements.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
+// Закрытие попапов на оверлей
+popupElements.forEach(popup => {
+  popup.addEventListener('mousedown', closePopupByClickOnOverlay);
+})
 // Сохранение данных профиля
 profilePopupElement.addEventListener('submit', handleProfileFormSubmit);
 // Сохранение данных карточки
 placePopupElement.addEventListener('submit', handlePlaceFormSubmit);
+<<<<<<< HEAD:scripts/script.js
 <<<<<<< HEAD:scripts/script.js
 
 
 
 =======
 >>>>>>> 1f7a4e1 (можно релизить):scripts/index.js
+=======
+>>>>>>> develop:scripts/index.js
