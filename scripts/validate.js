@@ -7,7 +7,6 @@ const popupObjForValidation = {
   errorClass: 'popup__input_type_error' // Маркер ошибки в инпуте (красный бордер)
 }
 
-
 // Основная функция валидации, принимающая объект с элементами попапа
 function enableValidation(obj) {
   // Создаю массив из коллекции форм в DOM для дальнейшего применения методов массива
@@ -18,7 +17,6 @@ function enableValidation(obj) {
     // Вызываю функцию с перебором всех инпутов
     setEventListeners(formItem);
   });
-
 
   // Функция перебора всех инпутов на странице и установки им обработчиков событий
   function setEventListeners(formItem) {
@@ -39,7 +37,6 @@ function enableValidation(obj) {
     });
   };
 
-
   // Функция проверки валидности поля формы
   function isValid(formItem, inputItem) {
     if (!inputItem.validity.valid) {
@@ -51,7 +48,6 @@ function enableValidation(obj) {
     }
   };
 
-
   // Функция, показывающая ошибку валидации
   function showError(formItem, inputItem, errorMessage) {
     // Нахожу элемент ошибки (спэн)
@@ -62,7 +58,6 @@ function enableValidation(obj) {
     errorElement.classList.add(obj.inputErrorClass);
   };
 
-
   // Функция, скрывающая ошибку валидации
   function hideError(formItem, inputItem) {
     // Нахожу элемент ошибки (спэн)
@@ -72,7 +67,6 @@ function enableValidation(obj) {
     errorElement.classList.remove(obj.inputErrorClass);
     errorElement.textContent = '';
   };
-
 
   // Функция, разрешающая отправку формы (как через кнопку, так и клавишей enter) при отсутствии невалидных инпутов
   function AllowSubmit(inputItems, buttonItem) {
@@ -93,7 +87,6 @@ function enableValidation(obj) {
       buttonItem.classList.remove(obj.inactiveButtonClass);
     }
   };
-
 
   // Функция, проверяющая наличие хоть одного инвалидного инпута. Нужна для связи между валидностью инпутов и возможностью отправки формы.
   function hasInvalidInput(inputItems) {
