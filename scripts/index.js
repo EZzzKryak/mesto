@@ -46,7 +46,7 @@ function closePopup(popup) {
   // Удаляю обработчик закрытия попапа на клавишу 'Escape'
   document.removeEventListener('keydown', closePopupByEscape);
 }
-// Закрытие попапа на клавишу 'Esc'
+// Закрытие попапа на клавишу 'Escape'
 function closePopupByEscape(evt) {
   popupElements.forEach(popup => {
     if (evt.key === 'Escape') {
@@ -87,6 +87,17 @@ function resetValidationError(popup) {
   inputElements.forEach(input => {
     input.classList.remove('popup__input_type_error');
   })
+}
+// Функция запрета отправки формы при наличии пустого инпута
+function disableSubmitWithEmptyInputs(popup) {
+  const buttonElement = popup.querySelector('.popup__submit');
+  const inputElements = popup.querySelectorAll('.popup__input');
+  inputElements.forEach((input) => {
+    if(!input.value) {
+      buttonElement.setAttribute('disabled', '');
+      buttonElement.classList.add('popup__submit_disabled');
+    }
+  });
 }
 // Создание карточки
 function createPlace(data) {
@@ -130,11 +141,13 @@ profileEditingButtonElement.addEventListener('click', () => {
   profilePopupJobInput.value = profileJobElement.textContent;
   openPopup(profilePopupElement);
   resetValidationError(profilePopupElement);
+  disableSubmitWithEmptyInputs(profilePopupElement);
 });
 placeAdditingButtonElement.addEventListener('click', () => {
   formInPlacePopupElement.reset();
   openPopup(placePopupElement);
   resetValidationError(placePopupElement);
+  disableSubmitWithEmptyInputs(placePopupElement);
 });
 // Закрытие попапов на крестик
 closeButtonElements.forEach((button) => {
@@ -149,3 +162,4 @@ popupElements.forEach(popup => {
 profilePopupElement.addEventListener('submit', handleProfileFormSubmit);
 // Сохранение данных карточки
 placePopupElement.addEventListener('submit', handlePlaceFormSubmit);
+

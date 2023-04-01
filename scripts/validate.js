@@ -68,23 +68,17 @@ function enableValidation(obj) {
     errorElement.textContent = '';
   };
 
-  // Функция, разрешающая отправку формы (как через кнопку, так и клавишей enter) при отсутствии невалидных инпутов
+  // Функция, разрешающая отправку формы при отсутствии невалидных инпутов
   function AllowSubmit(inputItems, buttonItem) {
     // Если есть хоть одно невалидное поле
     if (hasInvalidInput(inputItems)) {
-      // Запрещаю отправку формы при нажатии на кнопку
+      // Запрещаю отправку формы, добавляя кнопке 'disabled'
       buttonItem.classList.add(obj.inactiveButtonClass);
-      // А также при нажатии на клавишу enter, которая ориентируется на состояние кнопки. Если кнопка disabled, то отправка через enter также блокируется.
-      inputItems.forEach(inputItem => {
-        inputItem.addEventListener('keydown', evt => {
-          if(evt.key === 'Enter' && buttonItem.classList.contains(obj.inactiveButtonClass)) {
-            evt.preventDefault();
-          }
-        })
-      })
+      buttonItem.setAttribute("disabled", '');
     } else {
-      // Разрешаю отправку формы нажатием на кнопку, а следовательно и клавишей enter (т.к. она по умолчанию обладает функцией отправки формы)
+      // Разрешаю отправку формы
       buttonItem.classList.remove(obj.inactiveButtonClass);
+      buttonItem.removeAttribute("disabled");
     }
   };
 
