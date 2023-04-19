@@ -1,5 +1,5 @@
-// Массив карточек, которые изначально рендерятся (создаются) на странице
-const initialCards = [
+// Массив карточек, которые изначально рендерятся на странице
+export const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
