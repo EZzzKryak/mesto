@@ -1,6 +1,5 @@
 // Объект настроек валидации форм
 export const objForValidation = {
-  formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit',
   inactiveButtonClass: 'popup__submit_disabled',

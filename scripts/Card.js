@@ -19,18 +19,23 @@ export default class Card {
   generateCard() {
     // Создаём новую карточку из темплейта для дальнейшей работы с ней
     this._card = this._getTemplate();
+    // Получаем необходимые элементы карточки
+    this._likeCardBtn = this._card.querySelector('.place__like');
+    this._deleteCardBtn = this._card.querySelector('.place__remove');
+    this._cardImage = this._card.querySelector('.place__img');
+    this._cardName = this._card.querySelector('.place__name');
     // Навешиваем события на карточку
     this._setEventListeners();
     // Наполняем атрибуты копии шаблона инфой из данных формы (объекта, который возвращает форма)
-    this._card.querySelector('.place__name').textContent = this._name;
-    this._card.querySelector('.place__img').alt = this._name;
-    this._card.querySelector('.place__img').src = this._link;
+    this._cardName.textContent = this._name;
+    this._cardImage.alt = this._name;
+    this._cardImage.src = this._link;
     // Возвращаем полученную карточку
     return this._card;
   }
   // Лайк карточки
   _likeCard() {
-    this._card.querySelector('.place__like').classList.toggle('place__like_active');
+    this._likeCardBtn.classList.toggle('place__like_active');
   };
   // Удаление карточки
   _removeCard() {
@@ -46,15 +51,15 @@ export default class Card {
   // Навешивание обработчиков
   _setEventListeners() {
     // 1. Лайк
-    this._card.querySelector('.place__like').addEventListener('click', () => {
+    this._likeCardBtn.addEventListener('click', () => {
       this._likeCard();
     });
     // 2. Удаление
-    this._card.querySelector('.place__remove').addEventListener('click', () => {
+    this._deleteCardBtn.addEventListener('click', () => {
       this._removeCard();
     });
     // 3. Открытие попапа-картинки
-    this._card.querySelector('.place__img').addEventListener('click', (evt) => {
+    this._cardImage.addEventListener('click', (evt) => {
       this._openPopupImage(evt);
     });
   }
