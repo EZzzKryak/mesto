@@ -27,14 +27,16 @@ const placePopupLinkInput = placeForm.querySelector('.popup__input_type_pic-link
 // Получаем секцию с карточками мест и шаблон-template карточки места (для создания новых карточек)
 const cardsContainer = document.querySelector('.places');
 
-// Рендерим начальные карточки на страницу из массива constants.js
+// Рендер начальных карточек на странице из массива constants.js
 initialCards.forEach(initialCard => {
   renderPlace(initialCard);
 });
 
+// Создание новых экземпляров форм на основе класса FormValidator
 const profileClass = new FormValidator(objForValidation, profileForm);
-profileClass.enableValidation();
 const placeClass = new FormValidator(objForValidation, placeForm);
+// "Включение" валидации форм
+profileClass.enableValidation();
 placeClass.enableValidation();
 
 //Функции:

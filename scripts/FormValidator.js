@@ -3,8 +3,8 @@ export default class FormValidator {
     this._inputSelector = popupConfiguration.inputSelector;
     this._submitButtonSelector = popupConfiguration.submitButtonSelector;
     this._inactiveButtonClass = popupConfiguration.inactiveButtonClass;
-    this._inputErrorClass = popupConfiguration.inputErrorClass;
-    this._errorClass = popupConfiguration.errorClass;
+    this._textErrorClass = popupConfiguration.textErrorClass;
+    this._borderErrorClass = popupConfiguration.borderErrorClass;
     this._form = formElement;
   }
   // Методы
@@ -34,7 +34,6 @@ export default class FormValidator {
   // Проверка валидности поля формы
   _isValid(inputItem) {
     // Нахожу элемент ошибки (спэн)
-    this._errorElement = this._form.querySelector(`.${inputItem.id}-error`);
     if (!inputItem.validity.valid) {
       // showError получает аргументом форму, в которой находится проверяемое поле, и само поле, а также сообщение об ошибке валидации
       this._showError(inputItem, inputItem.validationMessage);
@@ -57,16 +56,20 @@ export default class FormValidator {
   }
   // Вывод ошибки валидации
   _showError(inputItem, errorMessage) {
+    // Нахожу элемент ошибки (спэн)
+    this._errorElement = this._form.querySelector(`.${inputItem.id}-error`);
     // Вывожу ошибку (спэн и бордер инпута)
-    inputItem.classList.add(this._errorClass);
+    inputItem.classList.add(this._borderErrorClass);
     this._errorElement.textContent = errorMessage;
-    this._errorElement.classList.add(this._inputErrorClass);
+    this._errorElement.classList.add(this._textErrorClass);
   };
   // Скрытие ошибки валидации
   _hideError(inputItem) {
+    // Нахожу элемент ошибки (спэн)
+    this._errorElement = this._form.querySelector(`.${inputItem.id}-error`);
     // Скрываю/очищаю ошибку (спэн и бордер инпута)
-    inputItem.classList.remove(this._errorClass);
-    this._errorElement.classList.remove(this._inputErrorClass);
+    inputItem.classList.remove(this._borderErrorClass);
+    this._errorElement.classList.remove(this._textErrorClass);
     this._errorElement.textContent = '';
   };
   // Разрешение на отправку формы при отсутствии невалидных инпутов
