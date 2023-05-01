@@ -1,12 +1,9 @@
 export default class Card {
-  constructor(cardData, templateSelector, openPopupFunc) {
+  constructor(cardData, templateSelector, handleCardClick) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._templateSelector = templateSelector;
-    this._imgPopupElement = document.querySelector('.popup_type_img');
-    this._bigImgPopupElement = this._imgPopupElement.querySelector('.popup__img')
-    this._bigImgNamePopupElement = this._imgPopupElement.querySelector('.popup__img-name');
-    this._openPopupFunc = openPopupFunc;
+    this._handleCardClick = handleCardClick;
   }
   // Получение разметки темплейта карточки
   _getTemplate() {
@@ -41,13 +38,6 @@ export default class Card {
   _removeCard() {
     this._card.remove();
   }
-  // Открытие попапа-картинки карточки
-  _openPopupImage(evt) {
-    this._bigImgPopupElement.src = evt.target.src;
-    this._bigImgPopupElement.alt = evt.target.alt;
-    this._bigImgNamePopupElement.textContent = this._name;
-    this._openPopupFunc(this._imgPopupElement);
-  }
   // Навешивание обработчиков
   _setEventListeners() {
     // 1. Лайк
@@ -58,9 +48,10 @@ export default class Card {
     this._deleteCardBtn.addEventListener('click', () => {
       this._removeCard();
     });
-    // 3. Открытие попапа-картинки
+    // 3. Открытие попапа-картинки (метод в классе PopupWithImage)
     this._cardImage.addEventListener('click', (evt) => {
-      this._openPopupImage(evt);
+      this._handleCardClick(evt);
     });
+
   }
 }
