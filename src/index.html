@@ -57,11 +57,11 @@
           <h2 class="popup__title">Новое место</h2>
           <form class="popup__form popup__form_type_place" name="addPlace" novalidate>
             <label class="popup__field">
-              <input minlength="2" maxlength="30" id="place-name-input" value="" type="text" name="placeName" placeholder="Название" class="popup__input popup__input_type_pic-name" required>
+              <input minlength="2" maxlength="30" id="place-name-input" value="" type="text" name="cardName" placeholder="Название" class="popup__input popup__input_type_pic-name" required>
               <span class="popup__input-error place-name-input-error"></span>
             </label>
             <label class="popup__field">
-              <input id="place-link-input" value="" type="url" name="placeLink" placeholder="Ссылка на картинку" class="popup__input popup__input_type_pic-link" required>
+              <input id="place-link-input" value="" type="url" name="cardLink" placeholder="Ссылка на картинку" class="popup__input popup__input_type_pic-link" required>
               <span class="popup__input-error place-link-input-error"></span>
             </label>
             <button type="submit" class="popup__submit popup__submit_type_place" aria-label="Сохранить данные">Создать</button>
@@ -79,7 +79,7 @@
 
       <template id="place">
         <article class="place">
-          <img src="#" alt="" class="place__img">
+          <img src="" alt="" class="place__img">
           <div class="place__info">
             <h2 class="place__name"></h2>
             <button type="button" class="place__like" aria-label="Нравится"></button>
@@ -87,7 +87,6 @@
           </div>
         </article>
       </template>
-
     </div>
   </body>
 </html>

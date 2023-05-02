@@ -15,14 +15,14 @@ export default class Popup {
     document.removeEventListener('keydown', this._handleEscClose.bind(this));
   }
 
-  // Закрытие на esc
+  // Закрытие на клавишу 'Escape'
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
       this.close();
     }
   }
 
-  // Закрытие попапа на оверлей
+  // Закрытие нажатием на оверлей
   _handleOverlayClose(evt) {
     if (evt.target !== evt.currentTarget) {
       return;

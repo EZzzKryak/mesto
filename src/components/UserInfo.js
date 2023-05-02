@@ -1,12 +1,9 @@
-
-
 export default class UserInfo {
   constructor({userNameSelector, userJobSelector}) {
     this._userName = document.querySelector(userNameSelector);
     this._userJob = document.querySelector(userJobSelector);
-    this._profileNameEl = document.querySelector('.profile__name');
-    this._profileJobEl = document.querySelector('.profile__job');
   }
+  // Метод возвращает объект с данными профиля (для отображения в форме при её открытии)
   getUserInfo() {
     return {
       userName: this._userName.textContent,
@@ -14,9 +11,9 @@ export default class UserInfo {
     }
   }
 
-  setUserInfo(name, job) {
-    // Сохранение данных профиля
-    this._userName.textContent = name;
-    this._userJob.textContent = job;
+  // Метод устанавливает данные профиля при сабмите формы
+  setUserInfo(profileData) {
+    this._userName.textContent = profileData.profileName;
+    this._userJob.textContent = profileData.profileJob;
   }
 }

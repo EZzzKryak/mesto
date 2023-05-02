@@ -8,15 +8,14 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    // достаём все элементы полей
+    // Достаёю все элементы полей
     this._inputList = this._popupForm.querySelectorAll('.popup__input');
-    // создаём пустой объект
     this._formValues = {};
-    // добавляем в этот объект значения всех полей
+    // Добавляю в пустой объект значения всех полей
     this._inputList.forEach(input => {
       this._formValues[input.name] = input.value;
     });
-    // возвращаем объект значений
+    // Возвращаю объект значений из инпутов
     return this._formValues;
   }
 
@@ -30,12 +29,8 @@ export default class PopupWithForm extends Popup {
     // Сохранение данных профиля
     this._popupForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      // добавим вызов функции _handleFormSubmit
-      // передадим ей объект — результат работы _getInputValues
+      // В вызове функции _handleFormSubmit передаём в неё объект — результат работы _getInputValues
       this._handleFormSubmit(this._getInputValues());
-      this.close();
     });
   }
-
-
 }
