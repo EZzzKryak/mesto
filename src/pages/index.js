@@ -1,10 +1,9 @@
-import Card from './components/Card.js';
-import FormValidator from './components/FormValidator.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import Section from './components/Section.js';
-import UserInfo from './components/UserInfo.js';
-import './pages/index.css';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
 import {
   initialCards,
   objForValidation,
@@ -14,22 +13,27 @@ import {
   profileForm,
   profilePopupJobInput,
   profilePopupNameInput
-} from './utils/constants.js';
-
+} from '../utils/constants.js';
+import './index.css';
 
 // - Секция с карточками на странице -
 // Создаю экземпляры карточек Card и размещаю их на странице при помощи класса Section,
 // который принимает массив данных items (который необходимо отобразить на странице)
 // и колбэк-функцию renderer для создания отдельной карточки и её вставку на страницу
 const cardList = new Section({items: initialCards, renderer: (cardData) => {
-  // openPopupImg - функция открытия фото карточки в увеличенном размере (реализация функции в секции с попапом-картинкой)
-  const card = new Card(cardData, '#place', openPopupImg);
-  const cardElement = card.generateCard();
+  // Ф-я createCard создаёт карточку и возвращает её (реализация ниже)
+  const cardElement = createCard(cardData);
   cardList.addItem(cardElement);
 }}, '.places');
 // Размещаю карточки на странице
 cardList.renderItems();
-
+// Создание экземпляра класса Card
+function createCard(cardItem) {
+  // openPopupImg - функция открытия фото карточки в увеличенном размере (реализация функции в секции с попапом-картинкой)
+  const card = new Card(cardItem, '#place', openPopupImg);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 
 // - Секция с формой добавления новой карточки -
 // Создаю экземпляр формы для добавления карточки PopupWithForm, колбэк-функция которой
@@ -37,8 +41,7 @@ cardList.renderItems();
 // а затем размещает на странице
 const placeAdditingForm = new PopupWithForm({popupSelector: '.popup_type_place', handleFormSubmit: (formData) => {
   // openPopupImg - функция открытия фото карточки в увеличенном размере (реализация функции в секции с попапом-картинкой)
-  const card = new Card(formData, '#place', openPopupImg);
-  const cardElement = card.generateCard();
+  const cardElement = createCard(formData);
   cardList.addItem(cardElement);
   placeAdditingForm.close();
   }
@@ -51,7 +54,6 @@ placeAdditingButtonElement.addEventListener('click', () => {
 // Навешиваю слушатели на форму добавления новой карточки
 placeAdditingForm.setEventListeners();
 
-
 // - Секция с попапом-картинкой карточки-
 // Создаю экземпляр попапа-картинки, в котором при клике на фото карточки оно (фото) открывается в увеличенном размере
 const cardImage = new PopupWithImage('.popup_type_img');
@@ -61,7 +63,6 @@ function openPopupImg(evt) {
 }
 // Навешиваю слушатели на попап-картинку карточки
 cardImage.setEventListeners();
-
 
 // - Секция с формой редактирования профиля -
 // Создаю экземпляр класса UserInfo, отвечающего за отображение данных профиля
@@ -82,7 +83,6 @@ profileEditingButtonElement.addEventListener('click', () => {
 })
 // Навешиваю слушатели на форму редактирования профиля
 profileEditingForm.setEventListeners();
-
 
 // - Секция с валидацией форм -
 // Создание экземпляров валидации для форм добавления карточек и редактирования профиля
