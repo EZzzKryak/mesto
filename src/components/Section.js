@@ -1,21 +1,20 @@
 export default class Section {
-  constructor({ items, renderer }, containerSelector) {
-    this._initialArray = items;
-    // Функция renderer используется в качестве колбэк-функции для реализации слабой связи между компонентами.
-    // В данном случае будет создавать экземпляр класса Card и вставлять его в разметку
+  constructor(renderer, containerSelector) {
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
   }
 
-  // Вызывает renderer для каждого элемента массива.
-  renderItems() {
-    this._initialArray.forEach(item => {
+  // Вызывает renderer для каждого элемента массива
+  renderItems(items) {
+    items.forEach(item => {
       this._renderer(item);
     });
   }
 
-  // Размещает созданный элемент в разметке (контейнере)
-  addItem(element) {
+  addItemAppend(element) {
+    this._container.append(element);
+  }
+  addItemPrepend(element) {
     this._container.prepend(element);
   }
 }

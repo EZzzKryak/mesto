@@ -1,6 +1,7 @@
 export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
+    this._submitBtn = this._popup.querySelector('.popup__submit');
     this._handleEscClose = this._handleEscClose.bind(this);
   }
 
@@ -31,6 +32,16 @@ export default class Popup {
     this.close();
   }
 
+  // Прелоадер для формы
+  isLoading(isLoadingStatus) {
+    if(isLoadingStatus) {
+      this._submitBtn.textContent = 'Сохранение...';
+    } else {
+      this._submitBtn.textContent = 'Сохранить';
+    }
+  }
+
+  // Навешивание обработчиков
   setEventListeners() {
     this._closeButton = this._popup.querySelector('.popup__close');
     // Закрытие попапа на крестик

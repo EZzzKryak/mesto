@@ -15,11 +15,13 @@
       <main class="main-content">
         <section class="profile">
           <div class="profile__container">
-            <img src="<%=require('./images/profile__avatar.jpg')%>" alt="Фото профиля" class="profile__avatar">
+            <div class="profile__avatar-container">
+              <img src="<%=require('./images/profile__avatar.jpg')%>" alt="Фото профиля" class="profile__avatar">
+            </div>
             <div class="profile__info">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <h1 class="profile__name"></h1>
               <button type="button" class="profile__edit-btn" aria-label="Редактировать профиль"></button>
-              <p class="profile__job">Исследователь океана</p>
+              <p class="profile__job"></p>
             </div>
           </div>
           <button type="button" class="profile__add-btn" aria-label="Добавить картинку"></button>
@@ -57,14 +59,24 @@
           <h2 class="popup__title">Новое место</h2>
           <form class="popup__form popup__form_type_place" name="addPlace" novalidate>
             <label class="popup__field">
-              <input minlength="2" maxlength="30" id="place-name-input" value="" type="text" name="cardName" placeholder="Название" class="popup__input popup__input_type_pic-name" required>
+              <input minlength="2" maxlength="30" id="place-name-input" value="" type="text" name="name" placeholder="Название" class="popup__input popup__input_type_pic-name" required>
               <span class="popup__input-error place-name-input-error"></span>
             </label>
             <label class="popup__field">
-              <input id="place-link-input" value="" type="url" name="cardLink" placeholder="Ссылка на картинку" class="popup__input popup__input_type_pic-link" required>
+              <input id="place-link-input" value="" type="url" name="link" placeholder="Ссылка на картинку" class="popup__input popup__input_type_pic-link" required>
               <span class="popup__input-error place-link-input-error"></span>
             </label>
             <button type="submit" class="popup__submit popup__submit_type_place" aria-label="Сохранить данные">Создать</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_type_confirm">
+        <div class="popup__container popup__container_type_form">
+          <button type="button" class="popup__close" aria-label="Закрыть"></button>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <form class="popup__form popup__form_type_confirm" name="confirmAction" novalidate>
+            <button type="submit" class="popup__submit popup__submit_type_confirm" aria-label="Подтвердить">Да</button>
           </form>
         </div>
       </div>
@@ -77,12 +89,29 @@
         </div>
       </div>
 
+      <div class="popup popup_type_avatar">
+        <div class="popup__container popup__container_type_form">
+          <button type="button" class="popup__close" aria-label="Закрыть"></button>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <form class="popup__form popup__form_type_avatar" name="setAvatar" novalidate>
+            <label class="popup__field">
+              <input id="avatar-link-input" value="" type="url" name="avatarLink" placeholder="Ссылка на картинку" class="popup__input popup__input_type_avatar-link" required>
+              <span class="popup__input-error avatar-link-input-error"></span>
+            </label>
+            <button type="submit" class="popup__submit popup__submit_type_avatar" aria-label="Сохранить данные">Сохранить</button>
+          </form>
+        </div>
+      </div>
+
       <template id="place">
         <article class="place">
           <img src="#" alt="#" class="place__img">
           <div class="place__info">
             <h2 class="place__name"></h2>
+            <div class="place__like-container">
             <button type="button" class="place__like" aria-label="Нравится"></button>
+              <div class="place__like-counter"></div>
+            </div>
             <button type="button" class="place__remove" aria-label="Удалить"></button>
           </div>
         </article>
