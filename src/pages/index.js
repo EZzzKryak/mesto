@@ -36,6 +36,7 @@ const profileEditingPopup = new PopupWithForm('.popup_type_profile', (profileDat
   api.setProfileInfo(profileData)
     .then(res => {
       profile.setUserInfo(res);
+      profileEditingPopup.close();
   })
   .catch((err) => {
     console.log(err);
@@ -43,7 +44,6 @@ const profileEditingPopup = new PopupWithForm('.popup_type_profile', (profileDat
   .finally(() => {
     profileEditingPopup.isLoading(false);
   });
-    profileEditingPopup.close();
   }
 );
 const avatarUpdatingPopup = new PopupWithForm('.popup_type_avatar', (avatarData) => {
@@ -51,6 +51,7 @@ const avatarUpdatingPopup = new PopupWithForm('.popup_type_avatar', (avatarData)
   api.setProfileAvatar(avatarData)
     .then(res => {
       profile.setUserAvatar(res);
+      avatarUpdatingPopup.close();
     })
     .catch((err) => {
       console.log(err);
@@ -58,7 +59,6 @@ const avatarUpdatingPopup = new PopupWithForm('.popup_type_avatar', (avatarData)
     .finally(() => {
       avatarUpdatingPopup.isLoading(false);
     });
-    avatarUpdatingPopup.close();
   }
 );
 const placeAdditingPopup = new PopupWithForm('.popup_type_place', (cardData) => {
@@ -67,6 +67,7 @@ const placeAdditingPopup = new PopupWithForm('.popup_type_place', (cardData) => 
     .then(res => {
       const cardElement = createCard(res);
       cardList.addItemPrepend(cardElement);
+      placeAdditingPopup.close();
     })
     .catch((err) => {
       console.log(err);
@@ -74,7 +75,6 @@ const placeAdditingPopup = new PopupWithForm('.popup_type_place', (cardData) => 
     .finally(() => {
       placeAdditingPopup.isLoading(false);
     });
-    placeAdditingPopup.close();
   }
 );
 // Фабрика по созданию карточек
